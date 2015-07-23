@@ -1,6 +1,7 @@
 /*!
  * Module dependencies.
  */
+var fs = require("fs");
 var Parser = require('commandline-parser').Parser
 var pjson = require('./package.json');
 
@@ -27,12 +28,24 @@ var logfile = cliParser.getArguments();
 if(!network) { console.error("Missing name for network"); cliParser.printHelp(); return; }
 if(!channel) { console.error("Missing name for channel"); cliParser.printHelp(); return; }
 if(!apiKey) { console.error("Missing key"); cliParser.printHelp(); return; }
-if(logfile.length == 1) { console.error("Missing file to process"); cliParser.printHelp(); return; }
+if(logfile.length < 1) { console.error("Missing file to process"); cliParser.printHelp(); return; }
+
+// double check file
+try {
+    var stat = fs.lstatSync(logfile[0]);
+    if(!stat.isFile()) {
+        console.error("Unable to open %s for reading. %s is not a file", logfile[0], logfile[0]);
+        return;
+    }
+} catch (err) {
+    console.error("Unable to stat file '%s', cause: %s", logfile[0], err);
+    return;
+}
 
 /* main entry point */
 
 // forgo promise and just chain up
-logscanner.scanLogFile(logfile[1], channel, network, function(logs) {
+logscanner.scanLogFile(logfile[0], channel, network, function(logs) {
     if(logs) {
         console.log("Scanned %d entries", logs.length);
         echelog.submitLogEntries(logs, host, port, apiKey);
