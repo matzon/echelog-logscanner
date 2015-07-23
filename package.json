@@ -1,0 +1,25 @@
+{
+  "name": "echelog-logscanner",
+  "version": "0.1.0",
+  "description": "Simple logscanner for importing log entries via the echelog-server rest api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matzon/echelog-logscanner.git"
+  },
+  "author": "Brian Matzon <brian@matzon.dk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matzon/echelog-logscanner/issues"
+  },
+  "homepage": "https://github.com/matzon/echelog-logscanner",
+  "dependencies": {
+    "commandline-parser": "^0.4.0",
+    "moment": "^2.10.3",
+    "read-line": "^0.1.2",
+    "trim": "0.0.1"
+  }
+}
