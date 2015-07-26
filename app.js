@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 var fs = require("fs");
-var Parser = require('commandline-parser').Parser
+var Parser = require('commandline-parser').Parser;
 var pjson = require('./package.json');
 
 var logscanner = require('./lib/logscanner');
