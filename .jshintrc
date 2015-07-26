@@ -16,5 +16,5 @@
   "boss": true,
   "eqnull": true,
   "node": true,
-  "strict": false
+  "strict": true
 }
